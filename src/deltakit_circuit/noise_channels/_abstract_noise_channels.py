@@ -409,7 +409,7 @@ class OneQubitOneProbabilityNoiseChannel(
         )
 
     def __hash__(self) -> int:
-        return hash((self.__class__, self.qubit, self.probability))
+        return hash((type(self).__qualname__, self.qubit, self.probability))
 
     def __repr__(self) -> str:
         tag_repr = f"[{self._tag}]" if self._tag is not None else ""

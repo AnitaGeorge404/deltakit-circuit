@@ -101,7 +101,9 @@ class Depolarise2(OneProbabilityNoiseChannel[T], TwoQubitNoiseChannel[T]):
         )
 
     def __hash__(self) -> int:
-        return hash((self.__class__, self._qubit1, self._qubit2, self.probability))
+        return hash(
+            (type(self).__qualname__, self._qubit1, self._qubit2, self.probability)
+        )
 
     def __repr__(self) -> str:
         tag_repr = f"[{self.tag}]" if self.tag is not None else ""
