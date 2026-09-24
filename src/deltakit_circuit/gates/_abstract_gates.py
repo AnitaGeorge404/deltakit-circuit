@@ -123,7 +123,7 @@ class OneQubitGate(Gate[T]):
         return isinstance(other, self.__class__) and self.qubit == other.qubit
 
     def __hash__(self) -> int:
-        return hash((self.__class__, self.qubit))
+        return hash((type(self).__qualname__, self.qubit))
 
 
 class OneQubitCliffordGate(OneQubitGate[T]):
@@ -251,7 +251,9 @@ class OneQubitMeasurementGate(OneQubitGate[T]):
         )
 
     def __hash__(self) -> int:
-        return hash((self.__class__, self.qubit, self.probability, self.is_inverted))
+        return hash(
+            (type(self).__qualname__, self.qubit, self.probability, self.is_inverted)
+        )
 
     def __invert__(self) -> OneQubitMeasurementGate[T]:
         """Invert the outcome of this measurement."""
@@ -408,7 +410,7 @@ class SymmetricTwoQubitGate(TwoOperandGate[Qubit[T], Qubit[T]]):
 
     def __hash__(self) -> int:
         qubits = self.qubits
-        return hash((self.__class__, frozenset(qubits)))
+        return hash((type(self).__qualname__, frozenset(qubits)))
 
 
 class ControlledGate(TwoOperandGate[UT, VT]):
@@ -461,7 +463,7 @@ class ControlledGate(TwoOperandGate[UT, VT]):
         )
 
     def __hash__(self) -> int:
-        return hash((self.__class__, self.control, self.target))
+        return hash((type(self).__qualname__, self.control, self.target))
 
     def __repr__(self) -> str:
         tag_repr = f"[{self._tag}]" if self._tag is not None else ""

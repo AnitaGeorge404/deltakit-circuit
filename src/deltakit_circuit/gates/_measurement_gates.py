@@ -426,7 +426,7 @@ class MPP(Gate[T]):
         )
 
     def __hash__(self) -> int:
-        return hash((self.__class__, self._pauli_product, self._probability))
+        return hash((type(self).__qualname__, self._pauli_product, self._probability))
 
     def __repr__(self) -> str:
         tag_repr = f"[{self._tag}]" if self._tag is not None else ""

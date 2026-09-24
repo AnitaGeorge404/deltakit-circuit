@@ -110,7 +110,7 @@ class CZ(
         }
 
     def __hash__(self) -> int:
-        return hash((self.__class__, frozenset((self.control, self.target))))
+        return hash((type(self).__qualname__, frozenset((self.control, self.target))))
 
     stim_string: ClassVar[str] = "CZ"
 
@@ -380,7 +380,7 @@ class XCX(ControlledGate[Qubit[T], Qubit[T]], SymmetricTwoQubitGate[Qubit[T]]):
         }
 
     def __hash__(self) -> int:
-        return hash((self.__class__, frozenset((self.control, self.target))))
+        return hash((type(self).__qualname__, frozenset((self.control, self.target))))
 
     stim_string: ClassVar[str] = "XCX"
 
@@ -508,7 +508,7 @@ class YCY(ControlledGate[Qubit[T], Qubit[T]], SymmetricTwoQubitGate[Qubit[T]]):
         }
 
     def __hash__(self) -> int:
-        return hash((self.__class__, frozenset((self.control, self.target))))
+        return hash((type(self).__qualname__, frozenset((self.control, self.target))))
 
     stim_string: ClassVar[str] = "YCY"
 
